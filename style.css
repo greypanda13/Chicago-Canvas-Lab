@@ -1,0 +1,12 @@
+body {
+  background-color: lightgrey
+}
+h1 {
+
+}
+.canvasholder {
+
+}
+#canvas {
+  border: 1px solid black;
+}
