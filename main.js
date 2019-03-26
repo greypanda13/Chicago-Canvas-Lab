@@ -5,35 +5,38 @@ function main() {
   var canvas = document.getElementById("canvas");
   var c = canvas.getContext("2d");
 
-  canvas.setAttribute("width", "800");
+  canvas.width = 550;
   canvas.height = 550;
 
   c.width = canvas.width;
   c.height = canvas.height;
 
-  var redSquare = {
+  var boardSquare = {
     x:0,
     y:0,
-    width: 50,
-    height: 50
-  };
+    width: (canvas.width/8),
+    height: (canvas.height/8),
+    colors: ["black", "red"]
+  }
+
+  console.log(boardSquare.colors[0], boardSquare.colors[1]);
 
   c.fillStyle = "#f00";
   c.strokeStyle = "black";
   c.lineWidth = 2;
 
   function drawBoard() {
-    for (var j = 0; (j * redSquare.height) < canvas.height; j++) {
-      console.log("outer");
-      for (var i = 0; (i * redSquare.width) < canvas.width; i++) {
-        getRect(c, (i * redSquare.width), (j * redSquare.height));
+    for (var j = 0; (j * boardSquare.height) < canvas.height; j++) {
+      for (var i = 0; (i * boardSquare.width) < canvas.width; i++) {
+        c.fillStyle = boardSquare.colors[(i + j)% boardSquare.colors.length];
+        getRect(c, (i * boardSquare.width), (j * boardSquare.height));
       }
     }
   }
 
   function getRect(c, x, y) {
     console.log("butts")
-    c.fillRect(x, y, redSquare.width, redSquare.height);
+    c.fillRect(x, y, boardSquare.width, boardSquare.height);
   }
   drawBoard();
 }
